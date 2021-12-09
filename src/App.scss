@@ -3,3 +3,22 @@ body {
   color: white;
   font-family: sans-serif;
 }
+
+.control {
+  background:rgb(27, 19, 63);
+  margin: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2.5rem;
+
+  h3 {
+    width: 100%;
+    text-align: center;
+  }
+
+  input {
+    width: 25rem;
+  }
+}

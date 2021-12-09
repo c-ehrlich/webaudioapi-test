@@ -1,9 +1,30 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-const Osc1 = ({ freq, changeFreq }) => {
+const Osc1 = ({ settings, change }) => {
   return (
-    <div>
-      <input type="range" id="frequency" onChange={changeFreq} value={freq} max="5000" />
+    <div className="control">
+      <h2>Oscillator 1</h2>
+      <div className="param">
+        <h3>frequency</h3>
+        <input
+          type="range"
+          id="frequency"
+          onChange={change}
+          value={settings.frequency}
+          max="5000"
+        />
+      </div>
+      <div className="param">
+        <h3>detune</h3>
+        <input
+          type="range"
+          id="detune"
+          onChange={change}
+          value={settings.detune}
+          min="-100"
+          max="100"
+        />
+      </div>
     </div>
   );
 };

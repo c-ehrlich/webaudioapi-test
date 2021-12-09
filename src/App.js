@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import "./App.scss";
 import Osc1 from "./components/Osc1";
 
@@ -12,19 +12,16 @@ let gain1 = actx.createGain();
 osc1.connect(gain1);
 gain1.connect(out);
 
-
 function App() {
-  const [osc1Freq, setOsc1Freq] = useState(osc1.frequency.value);
-
-  useEffect(() => {
-    console.log(osc1.frequency.value);
-    console.log(osc1Freq);
+  const [osc1Settings, setOsc1Settings] = useState({
+    frequency: osc1.frequency.value, 
+    detune: osc1.detune.value,
   })
 
-  const changeOsc1Freq = e => {
-    let {value} = e.target;
-    setOsc1Freq(value);
-    osc1.frequency.value = value;
+  const changeOsc1 = (e) => {
+    let { value, id } = e.target;
+    setOsc1Settings({ ...osc1Settings, [id]: value });
+    osc1[id].value = value;
   }
 
   return (
@@ -32,7 +29,10 @@ function App() {
       <h1>sliders</h1>
       <button onClick={() => osc1.start()}>start</button>
       <button onClick={() => osc1.stop()}>stop</button>
-      <Osc1 changeFreq={changeOsc1Freq} freq={osc1Freq} />
+      <Osc1
+        settings={osc1Settings}
+        change={changeOsc1}
+      />
     </div>
   );
 }
