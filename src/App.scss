@@ -4,6 +4,12 @@ body {
   font-family: sans-serif;
 }
 
+.center {
+  transform: translateX(-50%);
+  margin-left: 50%;
+  text-align: center;
+}
+
 .control {
   background:rgb(27, 19, 63);
   margin: 1.5rem;
@@ -24,6 +30,8 @@ body {
     padding: .5rem;
     margin: .5rem;
     transition: all 0.3s ease;
+    width: 10rem;
+    border-radius: 3rem;
     cursor: pointer;
     &:hover {
       background: rgb(212, 159, 203);
