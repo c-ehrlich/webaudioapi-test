@@ -1,4 +1,5 @@
 import React from "react";
+import Osc from "./Osc";
 
 let actx = new AudioContext();
 let out = actx.destination;
@@ -14,14 +15,25 @@ filter.connect(out);
 const CTX = React.createContext();
 export { CTX };
 
+let nodes = [];
+
 export function reducer(state, action) {
   let { id, value, note, freq } = action.payload || {};
   switch (action.type) {
     case "MAKE_OSC":
-      console.log("make osc, note and freq: ", note, freq);
+      const newOsc = new Osc(actx, "sawtooth", freq, 0, null, gain1);
+      nodes.push(newOsc);
       return { ...state };
     case "KILL_OSC":
-      console.log("kill osc, note and freq: ", note, freq);
+      let newNodes = [];
+      nodes.forEach((node) => {
+        if (Math.round(node.osc.frequency.value) === Math.round(freq)) {
+          node.stop();
+        } else {
+          newNodes.push(node);
+        }
+      });
+      nodes = newNodes;
       return { ...state };
     case "START_OSC":
       osc1.start();

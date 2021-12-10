@@ -8,7 +8,7 @@ const Keyboard = () => {
   useEffect(() => {
     const keyboard = new QwertyHancock({
       id: "keyboard",
-      width: "450",
+      width: "449",
       height: "70",
       octabes: 2,
       startNote: "C4",
@@ -26,7 +26,7 @@ const Keyboard = () => {
   }, [updateState]);
 
   return (
-    <div>
+    <div className="keyboard">
       <div id="keyboard"></div>
     </div>
   );
