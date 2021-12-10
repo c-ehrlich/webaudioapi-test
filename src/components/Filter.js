@@ -1,25 +1,64 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CTX } from "../context/Store";
 
-const Filter = ({ change, changeType, settings }) => {
-  const { frequency, detune, Q, gain, type } = settings;
+const Filter = () => {
+  const [appState, updateState] = useContext(CTX);
+
+  let { frequency, detune, Q, gain, type } = appState.filterSettings;
+
+  const change = (e) => {
+    let { id, value } = e.target;
+    updateState({ type: "CHANGE_FILTER", payload: { id, value } });
+  };
+  const changeType = (e) => {
+    let { id } = e.target;
+    updateState({ type: "CHANGE_FILTER_TYPE", payload: { id } });
+  };
+
   return (
     <div className="control">
       <h1>Filter</h1>
       <div className="params">
         <h3>frequency</h3>
-        <input type="range" value={frequency} onChange={change} id="frequency" max="10000" />
+        <input
+          type="range"
+          value={frequency}
+          onChange={change}
+          id="frequency"
+          max="10000"
+        />
       </div>
       <div className="params">
         <h3>detune</h3>
-        <input type="range" value={detune} onChange={change} id="detune" max="100" />
+        <input
+          type="range"
+          value={detune}
+          onChange={change}
+          id="detune"
+          max="100"
+        />
       </div>
       <div className="params">
         <h3>Q</h3>
-        <input type="range" value={Q} onChange={change} id="Q" max="10" step="0.1" />
+        <input
+          type="range"
+          value={Q}
+          onChange={change}
+          id="Q"
+          max="10"
+          step="0.1"
+        />
       </div>
       <div className="params">
         <h3>gain</h3>
-        <input type="range" value={gain} onChange={change} id="gain" max="10" step="0.1" />
+        <input
+          type="range"
+          value={gain}
+          onChange={change}
+          id="gain"
+          max="10"
+          step="0.1"
+        />
       </div>
       <div className="param">
         <h3>type</h3>
