@@ -16,12 +16,19 @@ function App() {
   const [osc1Settings, setOsc1Settings] = useState({
     frequency: osc1.frequency.value, 
     detune: osc1.detune.value,
+    type: osc1.type,
   })
 
   const changeOsc1 = (e) => {
     let { value, id } = e.target;
     setOsc1Settings({ ...osc1Settings, [id]: value });
     osc1[id].value = value;
+  }
+
+  const changeOsc1Type = (e) => {
+    let {id} = e.target;
+    osc1.type = id;
+    setOsc1Settings({ ...osc1Settings, type: id });
   }
 
   return (
@@ -32,6 +39,7 @@ function App() {
       <Osc1
         settings={osc1Settings}
         change={changeOsc1}
+        changeType={changeOsc1Type}
       />
     </div>
   );
