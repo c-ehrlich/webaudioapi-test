@@ -4,7 +4,7 @@ import { CTX } from "../context/Store";
 const Osc1 = () => {
   const [appState, updateState] = useContext(CTX);
 
-  let { type, frequency, detune } = appState.osc1Settings;
+  let { type, detune } = appState.osc1Settings;
 
   const change = (e) => {
     let { id, value } = e.target;
@@ -19,22 +19,6 @@ const Osc1 = () => {
   return (
     <div className="control">
       <h2>Oscillator 1</h2>
-      <div>
-        <button onClick={() => updateState({ type: "START_OSC" })}>
-          start
-        </button>
-        <button onClick={() => updateState({ type: "STOP_OSC" })}>stop</button>
-      </div>
-      <div className="param">
-        <h3>frequency</h3>
-        <input
-          type="range"
-          id="frequency"
-          onChange={change}
-          value={frequency}
-          max="5000"
-        />
-      </div>
       <div className="param">
         <h3>detune</h3>
         <input
